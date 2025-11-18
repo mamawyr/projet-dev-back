@@ -17,6 +17,7 @@
     </head>
     <body class="body">
     <main>
+        <a href="/photos">photos</a>
         <h1>Album Photos</h1>
         @yield("content")
     </main>
