@@ -19,16 +19,16 @@
     <main>
         <h1>Album Photos</h1>
 
-<div class="menu_search">
-  <form method="GET" class="search-bar">
-    <input type="hidden" name="page" value="search">
-    <input type="text" name="v" class="search-input" placeholder="Votre recherche" value="{{ $_GET['v'] ?? '' }}">
-    
-    <button type="submit" name="search" value="rechercher" class="search-button">
-      <i class='bx bx-search'></i>
-    </button>
-  </form>
-</div>
+    <div class="menu_search">
+    <form method="GET" class="search-bar">
+        <input type="hidden" name="page" value="search">
+        <input type="text" name="v" class="search-input" placeholder="Votre recherche" value="{{ $_GET['v'] ?? '' }}">
+        
+        <button type="submit" name="search" value="rechercher" class="search-button">
+        <i class='bx bx-search'></i>
+        </button>
+    </form>
+    </div>
 
         @yield("content")
     </main>
