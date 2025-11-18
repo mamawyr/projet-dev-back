@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Main;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,4 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
+    
 });
+Route::get('/albums/{id}', [Main::class, 'photos'])->where('id','[0-9]+');;
+Route::get('/photos/{id}', [Main::class, 'photos'])->where('id','[0-9]+');;
