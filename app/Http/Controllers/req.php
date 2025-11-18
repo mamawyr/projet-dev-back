@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class req extends Controller
 {
-    
-    public function photos($id) {
-        return "Affichage des photos de l'album ou de la photo d'id $id";
-        }
+         function photos() {
+                $photos = DB::select("SELECT * FROM photos");  // Je récupère l ensemble des films
+                return view("photos", ["photos" => $photos]);  // Je les donne à la vue
+            }
 }

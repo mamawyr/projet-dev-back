@@ -19,4 +19,4 @@ Route::get('/', function () {
     
 });
 Route::get('/albums/{id}', [req::class, 'photos'])->where('id','[0-9]+');;
-Route::get('/photos/{id}', [req::class, 'photos'])->where('id','[0-9]+');;
+Route::get('/photos', [req::class, 'photos'])->where('id','[0-9]+');;
