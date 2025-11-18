@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class Main extends Controller
+class req extends Controller
 {
     
     public function photos($id) {
