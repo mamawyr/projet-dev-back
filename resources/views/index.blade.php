@@ -19,12 +19,11 @@
         ->select('titre', DB::raw('MIN(id) as id'))
         ->groupBy('titre')
         ->get();
-
-    @endphp
+ @endphp
 
 
 @foreach ($albums as $a)
-    <li><a href="/album/{{ $a->id }}">{{ $a->titre }}</a></li>
+    <li class="albums"><a href="/album/{{ $a->id }}">{{ $a->titre }}</a></li>
 @endforeach
 
 
