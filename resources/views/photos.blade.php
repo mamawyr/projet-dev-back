@@ -1,7 +1,15 @@
+use Illuminate\Support\Facades\DB;
+
 @extends("template")
 
 
 @section("content")
+
+@php
+    $selected_tag = $selected_tag ?? null;
+    $search = $search ?? "";
+@endphp
+
 
 <div class="grid">
     @foreach ($photos as $p)

@@ -10,4 +10,29 @@ class req extends Controller
                 $photos = DB::select("SELECT * FROM photos");  // Je récupère l ensemble des films
                 return view("photos", ["photos" => $photos]);  // Je les donne à la vue
             }
+
+        function search(Request $request) {
+            $search = $request->input('v');
+            $tag = $request->input('tag');
+
+            $query = DB::table('photos')->select('photos.*'); //Accès à la base de données
+
+            if (!empty($search)) {
+                $query->where('photos.titre','LIKE',"%$search%"); //Permet de filtre par le titre
+            }
+
+            if (!empty($tag)) {
+                $query->join('possede_tag', 'photos.id', '=', 'possede_tag.photo_id')->where('possede_tag.tag_id', $tag); //Permet de filtrer par tag
+            }
+
+            $photos = $query->distinct('photos.id')->get(); //Evite les doublons
+            $tags = DB::table('tags')->select('id','nom')->distinct()->get(); //Récupére les tags dans la base de données
+
+            return view ("photos", [
+                "photos" => $photos,
+                "tags" => $tags,
+                "selected_tag" => $tag,
+                "search" => $search
+                ]);
+            }
 }

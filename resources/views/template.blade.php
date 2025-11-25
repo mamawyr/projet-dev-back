@@ -20,16 +20,35 @@
         <a href="/photos">photos</a>
         <h1>Album Photos</h1>
 
-    <div class="menu_search">
-    <form method="GET" class="search-bar">
-        <input type="hidden" name="page" value="search">
-        <input type="text" name="v" class="search-input" placeholder="Votre recherche" value="{{ $_GET['v'] ?? '' }}">
-        
-        <button type="submit" name="search" value="rechercher" class="search-button">
-        <i class='bx bx-search'></i>
-        </button>
-    </form>
+
+    <!-- J'initalise tags --> 
+    @php 
+        $tags = $tags ?? DB::table('tags')
+        ->select('nom', DB::raw('MIN(id) as id'))
+        ->groupBy('nom')
+        ->get();
+
+        $selected_tag = $selected_tag ?? null;
+        $search = $search ?? "";
+    @endphp
+
+   <div class="menu_search">
+        <form method="GET" action="/search" class="search-bar">
+            <input type="text" name="v" placeholder="Votre recherche" value="{{ $search ?? '' }}">
+
+            <select name="tag">
+                <option value="">-- Tous les tags --</option>
+                @foreach($tags as $t)
+                    <option value="{{ $t->id }}" @if($selected_tag == $t->id) selected @endif>
+                    {{ $t->nom }}
+                </option>
+                @endforeach
+            </select>
+
+            <button type="submit">Rechercher</button>
+        </form>
     </div>
+        
 
         @yield("content")
     </main>
