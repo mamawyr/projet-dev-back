@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('index');
     
 });
-Route::get('/albums/{id}', [req::class, 'photos'])->where('id','[0-9]+');;
+Route::get('/albums', [req::class, 'albums'])->where ('id','[0-9]+');;
 Route::get('/photos', [req::class, 'photos'])->where('id','[0-9]+');;
 
 Route::get('/search', [req::class, 'search']);
