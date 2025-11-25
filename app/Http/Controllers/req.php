@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 
 class req extends Controller
 {
-         function photos() {
+        function photos() {
                 $photos = DB::select("SELECT * FROM photos");  // Je récupère l ensemble des films
                 return view("photos", ["photos" => $photos]);  // Je les donne à la vue
+            }
+
+        function albums() {
+                $albums = DB::select("SELECT * FROM albums");  // Je récupère l ensemble des albums
+                return view("index", ["albums" => $albums]);  // Je les donne à la vue
             }
 
         function search(Request $request) {
