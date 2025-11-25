@@ -1,5 +1,5 @@
 <!--
-    Les photos appartiennent à un album.
+    Les photos appartiennent à un album. 
     Les photos ont également des étiquettes
     Il est possible de voir l'ensemble des albums
     Il est possible de voir les photos d'un album
