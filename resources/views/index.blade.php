@@ -1,4 +1,4 @@
-/*
+<!--
     Les photos appartiennent à un album.
     Les photos ont également des étiquettes
     Il est possible de voir l'ensemble des albums
@@ -9,7 +9,7 @@
     Il doit être possible de supprimer une photo d'un album (et donc la photo)
     Il doit être possible de trier l'affichage suivant les notes, les titres
     Il doit être possible de trier les albums par date de création ou par titre
-*/
+-->
 
 @extends ('template')
 @section ('content')
