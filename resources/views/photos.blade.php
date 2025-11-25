@@ -14,7 +14,7 @@
 <script src="/js/photos.js" defer></script>
 <div class="grid">
     @foreach ($photos as $p)
-    <li><a href="/photo/{{ $p->id }}"><img src="{{ $p->url }}" alt="" class="photo-apercu" data-photo-url="{{ $p->url }}" style="cursor: pointer;"></a></li>
+    <li><img src="{{ $p->url }}" alt="" class="photo-apercu" data-photo-url="{{ $p->url }}" style="cursor: pointer;"></li>
     @endforeach
 </div>
 
