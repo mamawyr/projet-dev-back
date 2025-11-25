@@ -1,4 +1,4 @@
-use Illuminate\Support\Facades\DB;
+
 
 @extends("template")
 
