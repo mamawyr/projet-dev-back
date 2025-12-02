@@ -15,9 +15,12 @@
     </head>
     <body class="body">
     <main>
-        <a href="/photos">photos</a>
-        <h1>Album Photos</h1>
-    
+
+        <header>
+        <div>
+            <a class="ph" href="/photos">photos</a>
+        </div>
+
    <div class="menu_search">
         <form method="GET" action="/search" class="search-bar">
             <input type="text" name="v" placeholder="Votre recherche" value="{{ $search ?? '' }}">
@@ -25,7 +28,7 @@
             <select name="tag">
                 <option value="">-- Tous les tags --</option>
                 @foreach($tags as $t)
-                    <option value="{{ $t->id }}" @if(isset($selected_tag) && $selected_tag == $t->id) selected @endif>
+                    <option value="{{ $t->id }}" @if(isset($selected_tag) && $selected_tag = $t->id) selected @endif>
                     {{ $t->nom }}
                 </option>
                 @endforeach
@@ -34,7 +37,9 @@
             <button type="submit">Rechercher</button>
         </form>
     </div>
-        
+        </header>
+
+        <h1>Album Photos</h1>
 
         @yield("content")
     </main>

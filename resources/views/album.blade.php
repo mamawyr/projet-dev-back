@@ -1,13 +1,10 @@
-
-
 @extends("template")
 
 
 @section("content")
 
 @php
-    $selected_tag = $selected_tag ?? null;
-    $search = $search ?? "";
+    
 @endphp
 
 <link rel="stylesheet" href="/css/photos.css">
