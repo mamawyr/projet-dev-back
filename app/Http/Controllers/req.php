@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 class req extends Controller
 {
-        function photos() {
-$selected_tag = $selected_tag ?? null;
+        function photos() { 
+            $selected_tag = $selected_tag ?? null;
+            $photos = DB::select("SELECT * FROM photos"); // Je récupère l ensemble des photos
+            $tags = DB::select("SELECT * FROM tags"); // Récupére les tags dans la base de données
+                return view("photos", ["photos" => $photos, "tags" => $tags]);  // Je les donne à la vue
         }
 
         function album($id) {
