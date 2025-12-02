@@ -16,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $tags = DB::select("SELECT * FROM tags"); // Récupére les tags dans la base de données & à rajouter dans chaque vue
-    return view('index', compact('tags'));
+    $albums = DB::select("SELECT * FROM albums"); 
+    return view('index', compact('tags', 'albums'));
     
 });
 Route::get('/album/{id}', [req::class, 'album'])->where ('id','[0-9]+');
+Route::get('/photos/tag/{id}', [req::class, 'photosByTag'])->where('id','[0-9]+');
 Route::get('/photos', [req::class, 'photos'])->where('id','[0-9]+');
 
 Route::get('/search', [req::class, 'search']);

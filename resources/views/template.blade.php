@@ -16,6 +16,7 @@
     <body class="body">
     <main>
 
+<<<<<<< HEAD
     <header>
         <nav>
             <ul class="menu">
@@ -23,15 +24,18 @@
                 <li class="menu_item"><a href="/album.blade.php">Albums</a></li>
                 <li class="menu_item"><a href="/photos">Photos</a></li>
             </ul>
+=======
+        <header>
+>>>>>>> 7ad8358482d0bc545e48a71032f80b0a2841b1c6
 
    <div class="menu_search">
         <form method="GET" action="/search" class="search-bar">
             <input type="text" name="v" placeholder="Votre recherche" value="{{ $search ?? '' }}">
 
-            <select name="tag">
+            <select name="tag" onchange="if(this.value) window.location.href='/photos/tag/' + this.value">
                 <option value="">-- Tous les tags --</option>
                 @foreach($tags as $t)
-                    <option value="{{ $t->id }}" @if(isset($selected_tag) && $selected_tag = $t->id) selected @endif>
+                    <option value="{{ $t->id }}" @if(isset($selected_tag) && $selected_tag == $t->id) selected @endif>
                     {{ $t->nom }}
                 </option>
                 @endforeach
