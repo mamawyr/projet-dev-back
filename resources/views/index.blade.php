@@ -14,14 +14,6 @@
 @extends ('template')
 @section ('content')
 
- @php 
-        $albums = $albums ?? DB::table('albums')
-        ->select('titre', DB::raw('MIN(id) as id'))
-        ->groupBy('titre')
-        ->get();
- @endphp
-
-
 @foreach ($albums as $a)
 
     <li class="albums"><a href="/album/{{ $a->id }}">{{ $a->titre }}</a></li>
