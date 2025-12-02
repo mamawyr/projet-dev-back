@@ -16,7 +16,6 @@
     <body class="body">
     <main>
 
-<<<<<<< HEAD
     <header>
         <nav>
             <ul class="menu">
@@ -24,9 +23,6 @@
                 <li class="menu_item"><a href="/album.blade.php">Albums</a></li>
                 <li class="menu_item"><a href="/photos">Photos</a></li>
             </ul>
-=======
-        <header>
->>>>>>> 7ad8358482d0bc545e48a71032f80b0a2841b1c6
 
    <div class="menu_search">
         <form method="GET" action="/search" class="search-bar">
