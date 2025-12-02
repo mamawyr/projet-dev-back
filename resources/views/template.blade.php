@@ -16,8 +16,13 @@
     <body class="body">
     <main>
 
-        <header>
-
+    <header>
+        <nav>
+            <ul class="menu">
+                <li class="menu_item"><a href="/">Accueil</a></li>
+                <li class="menu_item"><a href="/album.blade.php">Albums</a></li>
+                <li class="menu_item"><a href="/photos">Photos</a></li>
+            </ul>
 
    <div class="menu_search">
         <form method="GET" action="/search" class="search-bar">
@@ -35,6 +40,7 @@
             <button type="submit">Rechercher</button>
         </form>
     </div>
+        </nav>
         </header>
 
         <h1>Album Photos</h1>
