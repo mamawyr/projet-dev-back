@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $tags = DB::select("SELECT * FROM tags"); // Récupére les tags dans la base de données & à rajouter dans chaque vue
+    return view('index', compact('tags'));
     
 });
 Route::get('/albums', [req::class, 'albums'])->where ('id','[0-9]+');;

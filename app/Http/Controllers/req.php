@@ -16,28 +16,35 @@ class req extends Controller
                 return view("index", ["albums" => $albums]);  // Je les donne à la vue
             }
 
+
         function search(Request $request) {
-            $search = $request->input('v');
-            $tag = $request->input('tag');
 
-            $query = DB::table('photos')->select('photos.*'); //Accès à la base de données
+                $search = $request->input('v', ""); 
+                $tag = $request->input('tag', null);
 
-            if (!empty($search)) {
-                $query->where('photos.titre','LIKE',"%$search%"); //Permet de filtre par le titre
-            }
+                $query = DB::table('photos')->select('photos.*'); //Accès à la base de données
 
-            if (!empty($tag)) {
-                $query->join('possede_tag', 'photos.id', '=', 'possede_tag.photo_id')->where('possede_tag.tag_id', $tag); //Permet de filtrer par tag
-            }
+                if (!empty($search)) {
+                    $query->where('photos.titre','LIKE',"%$search%"); //Permet de filtre par le titre
+                }
 
-            $photos = $query->distinct('photos.id')->get(); //Evite les doublons
-            $tags = DB::table('tags')->select('id','nom')->distinct()->get(); //Récupére les tags dans la base de données
+                if (!empty($tag)) {
+                    $query->join('possede_tag', 'photos.id', '=', 'possede_tag.photo_id') //Permet de filtrer par tag
+                        ->where('possede_tag.tag_id', $tag);
+                }
 
-            return view ("photos", [
-                "photos" => $photos,
-                "tags" => $tags,
-                "selected_tag" => $tag,
-                "search" => $search
+                $photos = $query->distinct('photos.id')->get(); //Evite les doublons
+
+                $tags = DB::table('tags') // Récupére les tags dans la base de données
+                    ->select('id','nom')
+                    ->distinct()
+                    ->get();
+
+                return view("photos", [
+                    "photos" => $photos,
+                    "tags" => $tags,
+                    "selected_tag" => $tag,
+                    "search" => $search
                 ]);
             }
 }
