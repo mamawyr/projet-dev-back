@@ -22,7 +22,7 @@
         <form method="GET" action="/search" class="search-bar">
             <input type="text" name="v" placeholder="Votre recherche" value="{{ $search ?? '' }}">
 
-            <select name="tag">
+            <select name="tag" onchange="if(this.value) window.location.href='/photos/tag/' + this.value">
                 <option value="">-- Tous les tags --</option>
                 @foreach($tags as $t)
                     <option value="{{ $t->id }}" @if(isset($selected_tag) && $selected_tag == $t->id) selected @endif>

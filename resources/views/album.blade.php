@@ -11,7 +11,12 @@
 <script src="/js/photos.js" defer></script>
 <div class="grid">
     @foreach ($photos as $p)
-    <li><img src="{{ $p->url }}" alt="" class="photo-apercu" data-photo-url="{{ $p->url }}" style="cursor: pointer;"></li>
+    <li>
+        <img src="{{ $p->url }}" alt="" class="photo-apercu" data-photo-url="{{ $p->url }}" style="cursor: pointer;">
+        <h2>{{ $p->titre }} </h2>
+        <p>Note : {{ $p->note }}/5</p>
+
+</li>
     @endforeach
 </div>
 
