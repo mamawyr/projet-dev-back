@@ -16,7 +16,9 @@
 
 @foreach ($albums as $a)
 
-    <li class="albums"><a href="/album/{{ $a->id }}">{{ $a->titre }}</a></li>
+    <li class="albums">
+        <a href="/album/{{ $a->id }}">{{ $a->titre }}</a>
+    </li>
     
 @endforeach
 
