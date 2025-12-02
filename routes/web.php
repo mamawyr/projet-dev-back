@@ -21,6 +21,7 @@ Route::get('/', function () {
     
 });
 Route::get('/album/{id}', [req::class, 'album'])->where ('id','[0-9]+');
+Route::get('/photos/tag/{id}', [req::class, 'photosByTag'])->where('id','[0-9]+');
 Route::get('/photos', [req::class, 'photos'])->where('id','[0-9]+');
 
 Route::get('/search', [req::class, 'search']);

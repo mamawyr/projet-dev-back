@@ -10,6 +10,23 @@ class req extends Controller
 $selected_tag = $selected_tag ?? null;
         }
 
+        function photosByTag($id) {
+                $photos = DB::table('photos')
+                    ->join('possede_tag', 'photos.id', '=', 'possede_tag.photo_id')
+                    ->where('possede_tag.tag_id', $id)
+                    ->select('photos.*')
+                    ->distinct('photos.id')
+                    ->get();
+
+                $tags = DB::select("SELECT * FROM tags");
+
+                return view("photos", [
+                    "photos" => $photos,
+                    "tags" => $tags,
+                    "selected_tag" => $id
+                ]);
+        }
+
         function album($id) {
                // $albums = DB::select("SELECT * FROM albums");  // Je récupère l ensemble des albums
                    $search = $search ?? "";
