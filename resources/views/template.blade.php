@@ -16,9 +16,7 @@
     <body class="body">
     <main>
         <header>
-        <div>
-            <a class="ph" href="/photos">photos</a>
-        </div>
+
 
     <!-- J'initalise tags --> 
     @php 
