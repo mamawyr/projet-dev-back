@@ -10,14 +10,14 @@ class req extends Controller
 $selected_tag = $selected_tag ?? null;
         }
 
-        function albums($id) {
+        function album($id) {
                // $albums = DB::select("SELECT * FROM albums");  // Je récupère l ensemble des albums
                    $search = $search ?? "";
             $photos = DB::table('photos')
         ->where('album_id', $id)
         ->get();
             
-                return view("albums", ["photos" => $photos]);  // Je les donne à la vue
+                return view("album", ["photos" => $photos]);  // Je les donne à la vue
             }
 
         function search(Request $request) {
