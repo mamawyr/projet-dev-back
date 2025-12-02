@@ -17,9 +17,7 @@
     <main>
 
         <header>
-        <div>
-            <a class="ph" href="/photos">photos</a>
-        </div>
+
 
    <div class="menu_search">
         <form method="GET" action="/search" class="search-bar">
