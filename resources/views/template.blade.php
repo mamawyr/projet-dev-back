@@ -15,9 +15,10 @@
     </head>
     <body class="body">
     <main>
-        <a href="/photos">photos</a>
-        <h1>Album Photos</h1>
-
+        <header>
+        <div>
+            <a class="ph" href="/photos">photos</a>
+        </div>
 
     <!-- J'initalise tags --> 
     @php 
@@ -46,7 +47,9 @@
             <button type="submit">Rechercher</button>
         </form>
     </div>
-        
+        </header>
+
+        <h1>Album Photos</h1>
 
         @yield("content")
     </main>
