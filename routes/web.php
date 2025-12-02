@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('index', compact('tags'));
     
 });
-Route::get('/album/{id}', [req::class, 'album'])->where ('id','[0-9]+');;
-Route::get('/photos', [req::class, 'photos'])->where('id','[0-9]+');;
+Route::get('/album/{id}', [req::class, 'album'])->where ('id','[0-9]+');
+Route::get('/photos', [req::class, 'photos'])->where('id','[0-9]+');
 
 Route::get('/search', [req::class, 'search']);

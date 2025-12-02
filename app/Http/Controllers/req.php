@@ -16,8 +16,9 @@ $selected_tag = $selected_tag ?? null;
             $photos = DB::table('photos')
         ->where('album_id', $id)
         ->get();
+            $tags = DB::select("SELECT * FROM tags"); // Récupére les tags dans la base de données
             
-                return view("album", ["photos" => $photos]);  // Je les donne à la vue
+                return view("album", ["photos" => $photos, "tags" => $tags]);  // Je les donne à la vue
             }
 
 
