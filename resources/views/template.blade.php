@@ -20,7 +20,6 @@
         <nav>
             <ul class="menu">
                 <li class="menu_item"><a href="/">Accueil</a></li>
-                <li class="menu_item"><a href="/album.blade.php">Albums</a></li>
                 <li class="menu_item"><a href="/photos">Photos</a></li>
             </ul>
 
