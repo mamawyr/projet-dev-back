@@ -25,3 +25,7 @@ Route::get('/photos/tag/{id}', [req::class, 'photosByTag'])->where('id','[0-9]+'
 Route::get('/photos', [req::class, 'photos'])->where('id','[0-9]+');
 
 Route::get('/search', [req::class, 'search']);
+
+Route::post('/album/{id}/add-photo', [req::class, 'savephoto'])->where('id', '[0-9]+'); // Enregistrement de la photo dans la BDD
+
+Route::post('/album/{album_id}/delete-photo', [req::class, 'deletephoto'])->where('album_id', '[0-9]+'); // Suppression de la photo dans la BDD
