@@ -1,6 +1,8 @@
 <?php
 use App\Http\Controllers\req;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 
 /*
@@ -14,11 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $tags = DB::select("SELECT * FROM tags"); // Récupére les tags dans la base de données & à rajouter dans chaque vue
-    $albums = DB::select("SELECT * FROM albums"); 
-    return view('index', compact('tags', 'albums'));
+Route::get('/', function (Request $request) {
+    $tags = DB::select("SELECT * FROM tags");
     
+    $sortAlbums = $request->input('sort_albums', 'titre');
+    $orderAlbums = $request->input('order_albums', 'asc');
+    
+    $query = DB::table('albums');
+    
+    if ($sortAlbums === 'titre') {
+        $query->orderBy('titre', $orderAlbums);
+    } elseif ($sortAlbums === 'creation') {
+        $query->orderBy('creation', $orderAlbums);
+    }
+    
+    $albums = $query->get();
+    
+    return view('index', compact('tags', 'albums', 'sortAlbums', 'orderAlbums'));
 });
 Route::get('/album/{id}', [req::class, 'album'])->where ('id','[0-9]+');
 Route::get('/photos/tag/{id}', [req::class, 'photosByTag'])->where('id','[0-9]+');

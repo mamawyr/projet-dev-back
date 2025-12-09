@@ -1,26 +1,90 @@
-<!--
-    Les photos appartiennent à un album. => fonctionne
-    Les photos ont également des étiquettes => fonctionne
-    Il est possible de voir l'ensemble des albums => fonctionne
-    Il est possible de voir les photos d'un album => fonctionne
-    Lorsqu'on clique sur une photo, on la voit en grand (un peu de JS, ca ne fait pas de mal). => fonctionne
-    Il doit être possible de filtrer les photos visualisées par rapport aux étiquettes ou à une recherche sur le titre => fonctionne
-    Il doit être possible d'insérer une photo dans un album (d'abord via une url, ensuite via l'upload de photos) Manon
-    Il doit être possible de supprimer une photo d'un album (et donc la photo) Manon
-    Il doit être possible de trier l'affichage suivant les notes, les titres Théo
-    Il doit être possible de trier les albums par date de création ou par titre Théo
--->
-
 @extends ('template')
 @section ('content')
 
-@foreach ($albums as $a)
-
-    <li class="albums">
-        <a href="/album/{{ $a->id }}">{{ $a->titre }}</a>
-    </li>
+<div class="albums-container">
+    <h2>Albums</h2>
     
-@endforeach
+    <div class="sort-controls">
+        <form method="GET" action="/" class="sort-form">
+            <label for="sort_albums">Trier par :</label>
+            <select name="sort_albums" id="sort_albums" onchange="this.form.submit()">
+                <option value="titre" @if($sortAlbums === 'titre') selected @endif>Titre</option>
+                <option value="creation" @if($sortAlbums === 'creation') selected @endif>Date de création</option>
+            </select>
+            
+            <label for="order_albums">Ordre :</label>
+            <select name="order_albums" id="order_albums" onchange="this.form.submit()">
+                <option value="asc" @if($orderAlbums === 'asc') selected @endif>Croissant</option>
+                <option value="desc" @if($orderAlbums === 'desc') selected @endif>Décroissant</option>
+            </select>
+        </form>
+    </div>
 
+    <ul class="albums-list">
+        @foreach ($albums as $a)
+            <li class="albums">
+                <a href="/album/{{ $a->id }}">{{ $a->titre }}</a>
+            </li>
+        @endforeach
+    </ul>
+</div>
+
+<style>
+    .albums-container {
+        padding: 20px;
+    }
+
+    .sort-controls {
+        margin-bottom: 30px;
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    .sort-form {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .sort-form label {
+        font-weight: bold;
+    }
+
+    .sort-form select {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .albums-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .albums {
+        padding: 12px;
+        margin-bottom: 8px;
+        background-color: #f9f9f9;
+        border-left: 4px solid #007bff;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+    }
+
+    .albums:hover {
+        background-color: #f0f0f0;
+    }
+
+    .albums a {
+        text-decoration: none;
+        color: #007bff;
+        font-size: 1.1em;
+    }
+
+    .albums a:hover {
+        text-decoration: underline;
+    }
+</style>
 
 @endsection
