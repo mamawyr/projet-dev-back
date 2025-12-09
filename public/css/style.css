@@ -53,3 +53,20 @@ nav{
     align-items: center;
     flex-direction: row;
 }
+
+.photo img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.photo-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+
