@@ -19,6 +19,16 @@
     <label>Titre de l'image :</label><br>
     <input type="text" name="titre" required><br><br>
 
+    <label for="notation-select">Choisissez une note :</label><br>
+        <select name="notation" id="notation-select">
+            <option value="">-- Choisissez une note --</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br><br>
+
     <label>URL de l'image :</label><br>
     <input type="text" name="url"><br><br>
 
