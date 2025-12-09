@@ -1,15 +1,10 @@
 @extends ('template')
 @section ('content')
 
-<div class="photo-div">
-    @foreach ($photos as $p)
-    <li class="photo"><img src="{{ $p->url }}" alt="" class="photo-apercu" data-photo-url="{{ $p->url }}" style="cursor: pointer;"></li>
-    @endforeach
-</div>
 
 <div class="photos-container">
     <h2>
-        @if($selected_tag)
+        @if(isset($selected_tag) && $selected_tag)
             Photos avec le tag: 
             @foreach($tags as $tag)
                 @if($tag->id == $selected_tag)
@@ -27,7 +22,7 @@
             @if(!empty($search))
                 <input type="hidden" name="v" value="{{ $search }}">
             @endif
-            @if($selected_tag)
+            @if(isset($selected_tag) && $selected_tag)
                 <input type="hidden" name="tag" value="{{ $selected_tag }}">
             @endif
             
