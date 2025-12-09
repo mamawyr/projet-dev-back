@@ -82,31 +82,6 @@
     <button type="submit" style="background:red; color:white;">Supprimer</button>
 </form>
 
-<style>
-    .sort-controls {
-        margin: 20px 0;
-        background-color: #f5f5f5;
-        padding: 15px;
-        border-radius: 5px;
-    }
 
-    .sort-form {
-        display: flex;
-        gap: 20px;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    .sort-form label {
-        font-weight: bold;
-    }
-
-    .sort-form select {
-        padding: 8px 12px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-</style>
 
 @endsection
