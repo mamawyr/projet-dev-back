@@ -13,7 +13,8 @@
 <h1>{{ $album->titre }}</h1>
 
 <!-- Formulaire d'ajout de photo -->
-<form action="/album/{{ $album->id }}/add-photo" method="POST" enctype="multipart/form-data">
+<div class="sort-controls">
+    <form class="sort-form" action="/album/{{ $album->id }}/add-photo" method="POST" enctype="multipart/form-data">
     @csrf
 
     <label>Titre de l'image :</label><br>
@@ -46,12 +47,12 @@
     </form>
 </div>
 
-<div class="grid">
+<div class="photos-grid">
     @foreach ($photos as $p)
-    <li>
+    <li class="photo-item">
         <img src="{{ $p->url }}" alt="" class="photo-apercu" data-photo-url="{{ $p->url }}" style="cursor: pointer;">
-        <h2>{{ $p->titre }} </h2>
-        <p>Note : {{ $p->note }}/5</p>
+        <h2 class="photo-title">{{ $p->titre }} </h2>
+        <p class="photo-note">Note : {{ $p->note }}/5</p>
 
 </li>
     @endforeach
