@@ -22,6 +22,7 @@
     <label>URL de l'image :</label><br>
     <input type="text" name="url"><br><br>
 
+
     <label>Ou insérer une image :</label><br>
     <input type="file" name="photo_file"><br><br>
 
