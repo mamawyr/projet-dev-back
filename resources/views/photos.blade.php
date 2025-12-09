@@ -1,6 +1,8 @@
 @extends ('template')
 @section ('content')
 
+<link rel="stylesheet" href="/css/photos.css">
+<script src="/js/photos.js" defer></script>
 
 <div class="photos-container">
     <h2>
@@ -44,20 +46,29 @@
         <div class="photos-grid">
             @foreach($photos as $p)
                 <div class="photo-item">
-                    <img src="{{ $p->url }}" alt="{{ $p->titre }}" class="photo-apercu" data-photo-url="{{ $p->url }}" style="cursor: pointer;">
+                      <img src="{{ $p->url }}" alt="" class="photo-apercu" data-photo-url="{{ $p->url }}" style="cursor: pointer;">
                     <p class="photo-title">{{ $p->titre }}</p>
                     @if($p->note)
                         <p class="photo-note">Note : {{ $p->note }}/5</p>
                     @endif
                 </div>
+                
             @endforeach
         </div>
+        
     @else
         <p class="no-photos">Aucune photo trouvée pour cette recherche.</p>
     @endif
 
     <div class="back-link">
         <a href="/">← Retour à l'accueil</a>
+    </div>
+</div>
+
+<div id="photoModal" class="photo-modal" style="display: none;">
+    <div class="modal-content">
+        <span class="fermer">&times;</span>
+        <img class="modal-image" src="" alt="">
     </div>
 </div>
 
