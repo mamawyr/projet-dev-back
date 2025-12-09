@@ -14,33 +14,56 @@ class req extends Controller
                 return view("photos", ["photos" => $photos, "tags" => $tags]);  // Je les donne à la vue
         }
 
-        function photosByTag($id) {
-                $photos = DB::table('photos')
+        function photosByTag($id, Request $request) {
+                $sortPhotos = $request->input('sort_photos', 'titre');
+                $orderPhotos = $request->input('order_photos', 'asc');
+                
+                $query = DB::table('photos')
                     ->join('possede_tag', 'photos.id', '=', 'possede_tag.photo_id')
                     ->where('possede_tag.tag_id', $id)
-                    ->select('photos.*')
-                    ->distinct('photos.id')
-                    ->get();
+                    ->select('photos.*');
+                
+                if ($sortPhotos === 'titre') {
+                    $query->orderBy('photos.titre', $orderPhotos);
+                } elseif ($sortPhotos === 'note') {
+                    $query->orderBy('photos.note', $orderPhotos);
+                }
+                
+                $photos = $query->distinct('photos.id')->get();
 
                 $tags = DB::select("SELECT * FROM tags");
 
                 return view("photos", [
                     "photos" => $photos,
                     "tags" => $tags,
-                    "selected_tag" => $id
+                    "selected_tag" => $id,
+                    "sortPhotos" => $sortPhotos,
+                    "orderPhotos" => $orderPhotos
                 ]);
         }
 
-        function album($id) {
+        function album($id, Request $request) {
                // $albums = DB::select("SELECT * FROM albums");  // Je récupère l ensemble des albums
                $album = DB::table('albums')->where('id', $id)->first();    
                $search = $search ?? "";
-            $photos = DB::table('photos')
-        ->where('album_id', $id)
-        ->get();
+            
+            $sortPhotos = $request->input('sort_photos', 'titre');
+            $orderPhotos = $request->input('order_photos', 'asc');
+            
+            $query = DB::table('photos')
+                ->where('album_id', $id);
+            
+            if ($sortPhotos === 'titre') {
+                $query->orderBy('titre', $orderPhotos);
+            } elseif ($sortPhotos === 'note') {
+                $query->orderBy('note', $orderPhotos);
+            }
+            
+            $photos = $query->get();
+            
             $tags = DB::select("SELECT * FROM tags"); // Récupére les tags dans la base de données
             
-                return view("album", ["photos" => $photos, "tags" => $tags, "album" => $album]);  // Je les donne à la vue
+                return view("album", ["photos" => $photos, "tags" => $tags, "album" => $album, "sortPhotos" => $sortPhotos, "orderPhotos" => $orderPhotos]);  // Je les donne à la vue
             }
 
 
@@ -48,6 +71,8 @@ class req extends Controller
 
                 $search = $request->input('v', ""); 
                 $tag = $request->input('tag', null);
+                $sortPhotos = $request->input('sort_photos', 'titre');
+                $orderPhotos = $request->input('order_photos', 'asc');
 
                 $query = DB::table('photos')->select('photos.*'); //Accès à la base de données
 
@@ -58,6 +83,12 @@ class req extends Controller
                 if (!empty($tag)) {
                     $query->join('possede_tag', 'photos.id', '=', 'possede_tag.photo_id') //Permet de filtrer par tag
                         ->where('possede_tag.tag_id', $tag);
+                }
+
+                if ($sortPhotos === 'titre') {
+                    $query->orderBy('photos.titre', $orderPhotos);
+                } elseif ($sortPhotos === 'note') {
+                    $query->orderBy('photos.note', $orderPhotos);
                 }
 
                 $photos = $query->distinct('photos.id')->get(); //Evite les doublons
@@ -71,7 +102,9 @@ class req extends Controller
                     "photos" => $photos,
                     "tags" => $tags,
                     "selected_tag" => $tag,
-                    "search" => $search
+                    "search" => $search,
+                    "sortPhotos" => $sortPhotos,
+                    "orderPhotos" => $orderPhotos
                 ]);
             }
 

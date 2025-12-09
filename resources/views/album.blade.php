@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="/css/photos.css">
 <script src="/js/photos.js" defer></script>
 
+<h1>{{ $album->titre }}</h1>
+
 <!-- Formulaire d'ajout de photo -->
 <form action="/album/{{ $album->id }}/add-photo" method="POST" enctype="multipart/form-data">
     @csrf
@@ -26,6 +28,23 @@
 
     <button type="submit">Ajouter l'image</button>
 </form>
+
+<!-- Contrôles de tri -->
+<div class="sort-controls">
+    <form method="GET" action="/album/{{ $album->id }}" class="sort-form">
+        <label for="sort_photos">Trier par :</label>
+        <select name="sort_photos" id="sort_photos" onchange="this.form.submit()">
+            <option value="titre" @if($sortPhotos === 'titre') selected @endif>Titre</option>
+            <option value="note" @if($sortPhotos === 'note') selected @endif>Note</option>
+        </select>
+        
+        <label for="order_photos">Ordre :</label>
+        <select name="order_photos" id="order_photos" onchange="this.form.submit()">
+            <option value="asc" @if($orderPhotos === 'asc') selected @endif>Croissant</option>
+            <option value="desc" @if($orderPhotos === 'desc') selected @endif>Décroissant</option>
+        </select>
+    </form>
+</div>
 
 <div class="grid">
     @foreach ($photos as $p)
@@ -63,6 +82,31 @@
     <button type="submit" style="background:red; color:white;">Supprimer</button>
 </form>
 
-    
+<style>
+    .sort-controls {
+        margin: 20px 0;
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    .sort-form {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .sort-form label {
+        font-weight: bold;
+    }
+
+    .sort-form select {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
 
 @endsection
