@@ -13,7 +13,7 @@
 <h1>{{ $album->titre }}</h1>
 
 <!-- Formulaire d'ajout de photo -->
-<div class="sort-controls">
+<div class="sort-controls form">
     <form class="sort-form" action="/album/{{ $album->id }}/add-photo" method="POST" enctype="multipart/form-data">
     @csrf
 

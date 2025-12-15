@@ -1,6 +1,8 @@
 @extends ('template')
 @section ('content')
 
+<h1>Album Photos</h1>
+
 <div class="albums-container">
     <h2>Albums</h2>
     
