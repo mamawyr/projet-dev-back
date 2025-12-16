@@ -13,8 +13,8 @@
 <h1>{{ $album->titre }}</h1>
 
 <!-- Formulaire d'ajout de photo -->
-<div class="sort-controls form">
-    <form class="sort-form" action="/album/{{ $album->id }}/add-photo" method="POST" enctype="multipart/form-data">
+<div class="sort-controls form container">
+    <form class="sort-form container" action="/album/{{ $album->id }}/add-photo" method="POST" enctype="multipart/form-data">
     @csrf
 
     <label>Titre de l'image :</label><br>
@@ -41,7 +41,7 @@
 </form>
 
 <!-- Contrôles de tri -->
-<div class="sort-controls">
+<div class="sort-controls tri">
     <form method="GET" action="/album/{{ $album->id }}" class="sort-form">
         <label for="sort_photos">Trier par :</label>
         <select name="sort_photos" id="sort_photos" onchange="this.form.submit()">
@@ -76,11 +76,11 @@
 </div>
 
 <!-- Supprimer une photo -->
-<h3>Supprimer une photo</h3>
 
-<form action="/album/{{ $album->id }}/delete-photo" method="POST">
+
+<form class="delete" action="/album/{{ $album->id }}/delete-photo" method="POST">
     @csrf
-
+<h3>Supprimer une photo</h3>
     <label>Choisissez une photo :</label>
     <select name="photo_id" required>
         <option value="">-- Choisir --</option>
@@ -92,6 +92,11 @@
 
     <button type="submit" style="background:red; color:white;">Supprimer</button>
 </form>
+
+
+<div class="back-link">
+        <a href="/">← Retour à l'accueil</a>
+    </div>
 
 
 

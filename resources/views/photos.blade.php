@@ -19,7 +19,7 @@
     </h2>
 
     <!-- Contrôles de tri -->
-    <div class="sort-controls">
+    <div class="sort-controls tri">
         <form method="GET" class="sort-form">
             @if(!empty($search))
                 <input type="hidden" name="v" value="{{ $search }}">
